@@ -1,0 +1,32 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Sample index page</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+</head>
+
+<body>
+	<div class='container'>
+		<h1><%= title %></h1>
+		<p>
+			<span>Year: </span><b><%= year %></b>
+		</p>
+		<p>
+			<a href='/films/<%= index %>/json'>Film as JSON</a>
+		</p>
+		<p>
+			<a href='/films'>All films</a>
+		</p>
+	</div>
+  <script src="js/scripts.js"></script>
+</body>
+</html>
