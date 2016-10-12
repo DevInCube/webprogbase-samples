@@ -12,10 +12,21 @@
     <wsdl:part name="greeting" type="xsd:string"/>
    </wsdl:message>
 
+   <wsdl:message name="GetFilmsRequest">
+	<wsdl:part name="query" type="xsd:string"/>
+   </wsdl:message>
+   <wsdl:message name="GetFilmsResponse">
+    <wsdl:part name="films" type="xsd:string"/>
+   </wsdl:message>
+
    <wsdl:portType name="Hello_PortType">
     <wsdl:operation name="sayHello">
        <wsdl:input message="tns:SayHelloRequest"/>
        <wsdl:output message="tns:SayHelloResponse"/>
+    </wsdl:operation>
+	<wsdl:operation name="getFilms">
+	   <wsdl:input message="tns:GetFilmsRequest"/>
+       <wsdl:output message="tns:GetFilmsResponse"/>
     </wsdl:operation>
    </wsdl:portType>
 
@@ -24,6 +35,22 @@
     transport="http://schemas.xmlsoap.org/soap/http"/>
    <wsdl:operation name="sayHello">
     <soap:operation soapAction="sayHello"/>
+    <wsdl:input>
+       <soap:body
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+        namespace="urn:examples:helloservice"
+        use="encoded"/>
+    </wsdl:input>
+    <wsdl:output>
+       <soap:body
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+        namespace="urn:examples:helloservice"
+        use="encoded"/>
+    </wsdl:output>
+   </wsdl:operation>
+   
+   <wsdl:operation name="getFilms">
+    <soap:operation soapAction="getFilms"/>
     <wsdl:input>
        <soap:body
         encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"

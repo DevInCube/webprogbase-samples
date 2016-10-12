@@ -13,7 +13,13 @@ const helloService = {
         return {
           greeting: "Hello!!!"+ " " + args.name
         };
-      }
+	  },
+	  getFilms: function(args, callback) {
+		  getAllFilms()
+		  	.then(films => callback({
+				films: JSON.stringify(films)
+			}));
+	  }
     }
   }
 };
