@@ -1,68 +1,55 @@
 const express = require('express');
-const mongodb = require('mongodb');
+const mongodb = require('promised-mongo');
 
-const MongoClient = mongodb.MongoClient;
 const url = 'mongodb://localhost:27017/social-network-db';
-
+const db = mongodb(url);
 const app = express();
 
 app.get('/users', (req, res) => {
-	MongoClient.connect(url, (err, db) => {
-		if (err) {
-			console.log(`Error connecting to mongo db at ${url}. Reason: ${err}`);
-			res.status(500).end(err);
-		} else {
-			let usersCollection = db.collection('users');
-			usersCollection.find().toArray(function (err, result) {
-				if (err) {
-					console.log(err);
-					res.status(500).end(err);
-				} else {
-					let allUsers = result;
-					res.json(allUsers);
-				}
-				db.close();
-			});
-		}
-	});
+	db.users.find().toArray()
+		.then(users => res.json(users))
+		.catch(err => res.status(500).end(String(err)));
 });
 
-app.get('/users/:index', (req, res) => {
-	MongoClient.connect(url, (err, db) => {
-		if (err) {
-			console.log(`Error connecting to mongo db at ${url}. Reason: ${err}`);
-			res.status(500).end(err);
-		} else {
-			let usersCollection = db.collection('users');
-			usersCollection.findOne({ _id: req.params.index}, function (err, result) {
-				if (err) {
-					console.log(err);
-					res.status(500).end(err);
-				} else {
-					let user = result;
-					res.json(user);
-				}
-				db.close();
-			});
-		}
-	});
+app.get('/users/:user_id', (req, res) => {
+	let user_id = req.params.user_id;
+	db.users.findOne({ _id: mongodb.ObjectId(user_id)})
+		.then(users => res.json(users))
+		.catch(err => res.status(500).end(String(err)));
 });
 
-/*
-function checkIndex(req, res, next) {
-	let index = req.params.index;
-	if (index >= 0 && index < users.length) {
-		next();
-	} else {
-		res.status(404).end('Not found');
-	}
-}
-app.get('/users/:index', checkIndex, (req, res) => {
-	res.json(users[req.params.index]);
+app.post('/users', (req, res) => {
+	let new_user = {
+		name: 'Some name',
+		year: 1990,
+		city: 'Kiev'
+	};
+	db.users.insert(new_user)
+		.then(x => res.json(x))
+		.catch(err => res.status(500).end(String(err)));
 });
-app.delete('/users/:index', checkIndex, (req, res) => {
-	users.splice(req.params.index, 1);
-	res.json({ deleted: 1});
-});*/
+
+app.put('/users/:user_id', (req, res) => {
+	let user_id = req.params.user_id;
+	let updates = {
+		name: 'Updated name',
+		year: 2016,
+		city: 'Odessa'
+	};
+	db.users.findAndModify({
+			query: { _id: mongodb.ObjectId(user_id)},
+			update: { $set: updates },
+			new: true
+		})
+		.then(x => res.json(x))
+		.catch(err => res.status(500).end(String(err)));
+});
+
+app.delete('/users/:user_id', (req, res) => {
+	let user_id = req.params.user_id;
+	db.users.remove({ _id: mongodb.ObjectId(user_id)})
+		.then(users => res.json(users))
+		.catch(err => res.status(500).end(String(err)));
+});
 
 app.listen(3000, () => console.log("Server listening."));
