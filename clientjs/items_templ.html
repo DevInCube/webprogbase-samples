@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Sample</title>
+  <meta name="description" content="Sample site">
+  <meta name="author" content="phadyniak">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js'></script>
+</head>
+
+<body>
+	<div class='container'>
+		<div class='row'>
+			<div class='col-md-8'>
+				<h1>Users</h1>
+				<form>
+					<input id='filter' class="form-control" name='filter' type='text'  />
+				</form>
+				<br/>
+				<div id='users'></div>
+			</div>
+		</div>
+	</div>
+	<script src="items_templ.js"></script>
+
+	<script id="user-template" type="x-tmpl-mustache">
+		{{#users.length}}
+			<h3>Found: {{ users.length }}</h3>
+			<ul id='users-list' class="list-group">
+			{{#users}}
+				<li class="list-group-item">{{ fullname }}</li>
+			{{/users}}
+			</ul>
+		{{/users.length}}
+		{{^users}}
+		<h3>No users found</h3>
+		{{/users}}
+	</script>
+
+</body>
+</html>

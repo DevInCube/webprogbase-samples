@@ -1,0 +1,22 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 5,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+        "semi": 2,
+        "no-unused-vars": ["error", { "vars": "all", "args": "after-used" }],
+        "no-undefined": "error",
+        "no-undef": "error",
+        "eqeqeq": "error"
+    },
+    "ecmaFeatures": {
+        "jsx": true
+    },
+    "env" : {
+        "browser": true
+    }
+}
