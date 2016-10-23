@@ -51,10 +51,13 @@ userRouter.delete('/:index', (req, res) => {
 
 userRouter.put('/:index', (req, res) => {
 	let index = req.params.index;
-	let updates = {
-		fullname: req.body.fullname ? req.body.fullname: undefined,
-		year: req.body.year ? req.body.year: undefined
-	};
+	let updates = {};
+	if (req.body.fullname) {
+		updates.fullname = req.body.fullname;
+	}
+	if (req.body.year) {
+		updates.year = req.body.year;
+	}
 	db.users.findAndModify({
 		query: { _id: mongodb.ObjectId(index)},
 		update: { $set: updates },
