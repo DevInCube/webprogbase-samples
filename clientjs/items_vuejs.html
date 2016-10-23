@@ -10,26 +10,52 @@
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <script src="https://unpkg.com/vue@next/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
+  <style>
+  .float-right { float: right; }
+  .user-id { color: gray; }
+  </style>
 </head>
 
 <body>
-	<div class='container'>
+	<div id='users' class='container'>
+		<div class="page-header">
+			<h1>Users</h1>
+		</div>
 		<div class='row'>
 			<div class='col-md-8'>
-				<h1>Users</h1>
-				<form>
-					<input v-model="nameFilter" class="form-control" type='text'  />
-				</form>
-				<br/>
-				<div id='users'>
-					<div v-if="filteredUsers">
-						<h3>Found: </h3>
+				<div>
+					<p><b>Filter by name:</b></p>
+					<input v-model="nameFilter" class="form-control" />
+					<a href='#' v-on:click="clearFilter">Clear</a>
+					<hr/>
+					<p>Count: <b>{{filteredUsers.length}}</b></p>
+					<div v-if="filteredUsers.length">
 						<ul id='users-list' class="list-group">
-							<li v-for="user in users" class="list-group-item">{{ user.fullname }}</li>
+							<li v-for="user in filteredUsers" class="list-group-item">
+							<span class='float-right'><a href='#' :user_id="user.id" v-on:click="removeUser" >remove</a></span>
+							<b>{{ user.fullname }}</b> <span class='user-id'>(id: {{user.id }})</span>
+							</li>
 						</ul>
 					</div>
-					<h3 v-if="!filteredUsers">No users found</h3>
+					<h3 v-if="!filteredUsers.length">No users found</h3>
+					<hr/>
+				</div>
+			</div>
+			<div class='col-md-4'>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Create new user:</h3>
+					</div>
+					<div class="panel-body">
+						<form v-on:submit="createUser">
+							<div class="form-group">
+								<label for="newusername">Username</label>
+								<input id='newusername' class="form-control" value="New User" />
+							</div>
+							<button type="submit" class="btn btn-primary">Create</button>
+						<form>
+					</div>
 				</div>
 			</div>
 		</div>
