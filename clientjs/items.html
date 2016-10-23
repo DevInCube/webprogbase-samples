@@ -10,20 +10,46 @@
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <style>
+  .float-right { float: right; }
+  .user-id { color: gray; }
+  </style>
 </head>
 
 <body>
-	<div class='container'>
+	<div id='users' class='container'>
+		<div class="page-header">
+			<h1>Users</h1>
+		</div>
 		<div class='row'>
 			<div class='col-md-8'>
-				<h1>Users</h1>
-				<form>
-					<input id='filter' class="form-control" name='filter' type='text'  />
-				</form>
-				<br/>
-				<ul id='users-list' class="list-group">
-				  <!--<li class="list-group-item">Cras justo odio</li>-->
-				</ul>
+				<div>
+					<p><b>Filter by name:</b></p>
+					<input id="nameFilter" class="form-control" />
+					<a id='clearFilter' href='#'>Clear</a>
+					<hr/>
+					<p>Count: <b id='usersCount'>0</b></p>
+					<div id='filteredUsers'>
+						<!-- users here -->
+					</div>
+					<hr/>
+				</div>
+			</div>
+			<div class='col-md-4'>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Create new user:</h3>
+					</div>
+					<div class="panel-body">
+						<form id='createUserForm'>
+							<div class="form-group">
+								<label for="newUserName">Username</label>
+								<input id='newUserName' class="form-control" value="New User" />
+							</div>
+							<button type="submit" class="btn btn-primary">Create</button>
+						<form>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
