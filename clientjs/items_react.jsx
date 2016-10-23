@@ -19,6 +19,18 @@ var FilterComponent = React.createClass({
 	}
 });
 
+var User = React.createClass({
+	render: function() {
+		return (
+			<li className='list-group-item'>
+				<span className='float-right'><a href='#' onClick={() => this.props.removeUser(this.props.user.id)} >remove</a></span>
+				<b>{this.props.user.fullname}</b>
+				<span className="user-id"> (id: {this.props.user.id})</span>
+			</li>
+		);
+	}
+});
+
 var UsersList = React.createClass({
 	render: function() {
 		var listComponent = 
@@ -28,11 +40,7 @@ var UsersList = React.createClass({
 				<ul className='list-group'>
 				{
 					this.props.users.map(user => (
-						<li key={user.id} className='list-group-item'>
-							<span className='float-right'><a href='#' onClick={() => this.props.removeUser(user.id)} >remove</a></span>
-							<b>{user.fullname}</b>
-							<span className="user-id"> (id: {user.id})</span>
-						</li>
+						<User key={user.id} user={user} removeUser={this.props.removeUser} />
 					))
 				}
 				</ul>
