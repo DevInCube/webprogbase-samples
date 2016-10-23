@@ -1,0 +1,84 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Sample</title>
+  <meta name="description" content="Sample site">
+  <meta name="author" content="phadyniak">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <style>
+  .float-right { float: right; }
+  .user-id { color: gray; }
+  .btn-link { border: 0 solid white; padding: 0px;}
+  </style>
+</head>
+
+<body>
+	<div id='users' class='container'>
+		<div class="page-header">
+			<h1>Users</h1>
+		</div>
+		<div class='row'>
+			<div class='col-md-8'>
+				<div>
+					<p><b>Filter by name:</b></p>
+					<form action='/' method='GET'>
+						<input name="nameFilter" class="form-control" value="{{nameFilter}}" />
+					</form>
+					<form action='/' method='GET'>
+						<input type='hidden' name='nameFilter' value=''/>
+						<button type="submit" class="btn btn-link" >Clear</button>
+					</form>
+					<hr/>
+					<p>Count: <b id='usersCount'>{{users.length}}</b></p>
+					<div id='filteredUsers'>
+						{{#users.length}}
+						<div>
+							<ul id='users-list' class="list-group">
+							{{#users}}
+								<li class="list-group-item">
+								<span class='float-right'>
+									<form action='/users/{{id}}/remove' method='POST'>
+										<input type='hidden' name='nameFilter' value='{{nameFilter}}'/>
+										<button type="submit" class="btn btn-link" >remove</button>
+									</form>
+								</span>
+								<b>{{fullname}}</b> 
+								<span class='user-id'>(id: {{id}})</span>
+							</li>
+							{{/users}}
+							</ul>
+						</div>
+						{{/users.length}}
+						{{^users}}
+						<h3>No users found</h3>
+						{{/users}}
+					</div>
+					<hr/>
+				</div>
+			</div>
+			<div class='col-md-4'>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Create new user:</h3>
+					</div>
+					<div class="panel-body">
+						<form id='createUserForm' action='/users' method='POST' enctype='application/x-www-form-urlencoded'>
+							<input type='hidden' name='nameFilter' value='{{nameFilter}}'/>
+							<div class="form-group">
+								<label for="newUserName">Username</label>
+								<input name='newUserName' class="form-control" value="New User" />
+							</div>
+							<button type="submit" class="btn btn-primary">Create</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
