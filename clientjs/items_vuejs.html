@@ -1,0 +1,39 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Sample</title>
+  <meta name="description" content="Sample site">
+  <meta name="author" content="phadyniak">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://unpkg.com/vue@next/dist/vue.js"></script>
+</head>
+
+<body>
+	<div class='container'>
+		<div class='row'>
+			<div class='col-md-8'>
+				<h1>Users</h1>
+				<form>
+					<input v-model="nameFilter" class="form-control" type='text'  />
+				</form>
+				<br/>
+				<div id='users'>
+					<div v-if="filteredUsers">
+						<h3>Found: </h3>
+						<ul id='users-list' class="list-group">
+							<li v-for="user in users" class="list-group-item">{{ user.fullname }}</li>
+						</ul>
+					</div>
+					<h3 v-if="!filteredUsers">No users found</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="items_vuejs.js"></script>
+</body>
+</html>
