@@ -2,8 +2,8 @@
 var data = {
 	
 	users: [],
-	_nameFilter: "",
 	
+	_nameFilter: "",
 	get nameFilter() {
 		return this._nameFilter;
 	},
@@ -13,6 +13,15 @@ var data = {
 		var nameFilterEl = document.getElementById("nameFilter");
 		nameFilterEl.value = data.nameFilter;
 		showUsers();
+	},
+	
+	get filteredUsers() {
+		var usersList = this.users;
+		var filterText = this.nameFilter.toLowerCase().trim();
+		if (filterText) {
+			usersList = this.users.filter(x => x.fullname.toLowerCase().includes(filterText));
+		}
+		return usersList;
 	}
 };
 
@@ -64,11 +73,7 @@ window.addEventListener("load", function(evdata) {
 */
 function showUsers() {
 	// filter users
-	var usersList = data.users;
-	var filterText = data.nameFilter;
-	if (filterText) {
-		usersList = data.users.filter(x => x.fullname.toLowerCase().includes(filterText));
-	}
+	var usersList = data.filteredUsers;
 	
 	// update counter
 	var filteredCountEl = document.getElementById("usersCount");
