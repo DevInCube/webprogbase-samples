@@ -1,0 +1,84 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Sample</title>
+  <meta name="description" content="Sample site">
+  <meta name="author" content="phadyniak">
+  <script
+	  src="https://code.jquery.com/jquery-3.1.1.min.js"
+	  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	  crossorigin="anonymous"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js'></script>
+  <style>
+  .float-right { float: right; }
+  .user-id { color: gray; }
+  </style>
+</head>
+
+<body>
+	<div id='users' class='container'>
+		<div class="page-header">
+			<h1>Users</h1>
+		</div>
+		<div class='row'>
+			<div class='col-md-8'>
+				<div>
+					<p><b>Filter by name:</b></p>
+					<input id="nameFilter" class="form-control" />
+					<a id='clearFilter' href='#'>Clear</a>
+					<hr/>
+					<p>Count: <b id='usersCount'>0</b></p>
+					<div id='filteredUsers'>
+						<!-- users here -->
+					</div>
+					<hr/>
+				</div>
+			</div>
+			<div class='col-md-4'>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Create new user:</h3>
+					</div>
+					<div class="panel-body">
+						<form id='createUserForm'>
+							<div class="form-group">
+								<label for="newUserName">Username</label>
+								<input id='newUserName' class="form-control" value="New User" />
+							</div>
+							<button type="submit" class="btn btn-primary">Create</button>
+						<form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="fakeServer.js"></script>
+	<script src="items_templ.js"></script>
+
+	<!-- A Mustache template -->
+	<script id="user-template" type="x-tmpl-mustache">
+		{{#users.length}}
+		<div>
+			<ul id='users-list' class="list-group">
+			{{#users}}
+				<li class="list-group-item">
+				<span class='float-right'><a href='#' class='remove-link' user_id="{{id}}">remove</a></span>
+				<b>{{fullname}}</b> 
+				<span class='user-id'>(id: {{id}})</span>
+			</li>
+			{{/users}}
+			</ul>
+		</div>
+		{{/users.length}}
+		{{^users}}
+		<h3>No users found</h3>
+		{{/users}}
+	</script>
+
+</body>
+</html>
