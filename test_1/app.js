@@ -3,7 +3,7 @@ const mongodb = require('promised-mongo');
 
 const url = 'mongodb://localhost:27017/social-network-db';
 const db = mongodb(url);
-const app = express();
+const app = express()
 
 app.get('/users', (req, res) => {
 	db.users.find().toArray()

@@ -17,19 +17,16 @@ var data = {
 };
 
 // subscribe to onload event
-window.addEventListener("load", function(evdata) {
-	var nameFilterEl = document.getElementById("nameFilter");
-	nameFilterEl.addEventListener("input", function(e) {
+$( document ).ready(function(evdata) {
+	$("#nameFilter").input(function(e) {
 		data.nameFilter = e.target.value.toLowerCase().trim();
 	});
 	
-	var clearFilterEl = document.getElementById("clearFilter");
-	clearFilterEl.addEventListener("click", function(e) {
+	$("#clearFilter").click(function(e) {
 		data.nameFilter = "";
 	});
 	
-	var createFormEl = document.getElementById('createUserForm');
-	createFormEl.addEventListener('submit', function(event) {
+	$("#createUserForm").submit(function(event) {
 		event.preventDefault();
 		var userName = event.target.newUserName.value;
 		fakeAjaxCreateUser(userName)
@@ -58,22 +55,21 @@ function showUsers() {
 	}
 	
 	// update counter
-	var filteredCountEl = document.getElementById("usersCount");
-	filteredCountEl.innerText = usersList.length;
+	$('#usersCount').text(usersList.length);
 	
 	// unsubscribe all handlers from old
-	var filteredUsersEl = document.getElementById("filteredUsers");
-	var removeLinks = filteredUsersEl.getElementsByClassName('remove-link');
-	[].slice.call(removeLinks).forEach(link => link.removeEventListener("click", onUserRemoveClicked));  // unsubscribe
+	var filteredUsersEl = $("#filteredUsers");
+	var removeLinks = $('.remove-link');
+	[].slice.call(removeLinks).forEach(link => link.off("click", onUserRemoveClicked));  // unsubscribe
 	
 	// update DOM
-	var template = document.getElementById('user-template').innerHTML;
+	var template = $('.user-template').html();
 	var renderedHTML = Mustache.render(template, { users: usersList });
-	filteredUsersEl.innerHTML = renderedHTML;
+	filteredUsersEl.html(renderedHTML);
 	
 	// unsubscribe handlers to new links
-	removeLinks = filteredUsersEl.getElementsByClassName('remove-link');
-	[].slice.call(removeLinks).forEach(link => link.addEventListener("click", onUserRemoveClicked));  // subscribe
+	removeLinks = $('.remove-link');
+	[].slice.call(removeLinks).forEach(link => link.on("click", onUserRemoveClicked));  // subscribe
 }
 
 function onUserRemoveClicked(event) {

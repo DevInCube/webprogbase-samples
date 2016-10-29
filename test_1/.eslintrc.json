@@ -1,6 +1,6 @@
 {
     "parserOptions": {
-        "ecmaVersion": 5,
+        "ecmaVersion": 7,
         "sourceType": "module",
         "ecmaFeatures": {
             "jsx": true
@@ -11,12 +11,15 @@
         "no-unused-vars": ["error", { "vars": "all", "args": "after-used" }],
         "no-undefined": "error",
         "no-undef": "error",
-        "eqeqeq": "error"
+        "eqeqeq": "error",
+        "no-var": "error"
     },
     "ecmaFeatures": {
         "jsx": true
     },
     "env" : {
+        "es6": true,
+        "node": true,
         "browser": true
     }
 }
