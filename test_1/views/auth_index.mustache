@@ -1,0 +1,12 @@
+<p>
+{{#user}}
+	Hello, <b>{{user.username}}</b><br />
+	<a href='/logout'>Logout</a><br />
+	<a href='/profile'>Profile</a><br />
+	<a href='/admin'>Admin</a><br />
+{{/user}}
+{{^user}}
+	Index page<br />
+	<a href='/login'>Login</a>
+{{/user}}
+</p>

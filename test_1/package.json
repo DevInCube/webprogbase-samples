@@ -9,10 +9,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.3",
     "ejs": "^2.5.2",
     "express": "^4.14.0",
+    "express-session": "^1.14.2",
     "mongodb": "^2.2.10",
     "mongodb-promise": "0.0.4",
-    "promised-mongo": "^1.2.0"
+    "mustache-express": "^1.2.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "promised-mongo": "^1.2.0",
+    "session": "^0.1.0"
   }
 }
