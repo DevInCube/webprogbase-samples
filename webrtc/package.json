@@ -10,7 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "simple-peer": "^6.0.7"
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "simple-peer": "^6.0.7",
+    "websocket": "^1.0.23"
   },
   "devDependencies": {
     "budo": "^9.2.1"

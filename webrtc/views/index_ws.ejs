@@ -1,0 +1,54 @@
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<div class='container'>
+		<div class='page-header'><h1>WebSockets sample</h1></div>
+		<div class='row'>
+			<div class='col-md-3'>
+			</div>
+			<div class='col-md-6'>
+				<h3>Chat:</h3>
+				<label>Message</label><br/>
+				<textarea id='yourMessage' class='form-control'></textarea><br/>
+				<button id='send' class='btn btn-success'>send</button><br/>
+				<br />
+				<pre id='messages'></pre>
+			</div>
+			<div class='col-md-3'>
+			</div>
+		</div>
+	</div>
+	<script charset="utf-8">
+	
+	var connection = new WebSocket('ws://localhost:3001/');
+
+	// When the connection is open, send some data to the server
+	connection.onopen = function () {
+	  connection.send('Ping'); // Send the message 'Ping' to the server
+	  document.getElementById('messages').textContent += 'Connection opened.\n';
+	};
+
+	// Log errors
+	connection.onerror = function (error) {
+	  console.log('WebSocket Error ' + error);
+	  document.getElementById('messages').textContent += '[Error]: ' + error + '\n';
+	};
+
+	// Log messages from the server
+	connection.onmessage = function (e) {
+	  console.log('Server: ' + e.data);
+	  document.getElementById('messages').textContent += '[Server]: ' + e.data + '\n';
+	};
+	
+	document.getElementById('send').addEventListener('click', function(e) {
+		var msg = document.getElementById('yourMessage').value;
+		document.getElementById('messages').textContent += '[You]: ' + msg + '\n';
+		console.log(msg);
+		connection.send(msg);
+	});
+	
+	</script>
+</body>
+</html>
