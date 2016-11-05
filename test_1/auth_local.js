@@ -16,13 +16,6 @@ const db = {
 			id: 4567224,
 			username: "user",
 			password: sha512("pass", serverSalt).passwordHash,
-			role: "user"
-		},
-		{
-			id: 1214351,
-			username: "admin",
-			password: sha512("admin", serverSalt).passwordHash,
-			role: "admin"
 		}
 	]
 };
