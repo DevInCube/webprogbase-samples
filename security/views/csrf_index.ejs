@@ -39,14 +39,17 @@
 					<div>
 						<% messages.forEach(message => {%>
 							<div>
-								<b><%= message.author %></b>: <span><%= message.text %></span>
+								<b><%= message.author %></b>: <span><%- message.text %></span>
 							</div>
 						<% }) %>
 					</div>
 				<% } %>
 			</div>
 			<div class='col-md-8'>
-				Bla-bla-bla.
+				<p>
+                    Bla-bla-bla.
+                </p>
+                <a href='/sql'>SQL Injection Sample</a>
 			</div>
 		</div>
 	</div>

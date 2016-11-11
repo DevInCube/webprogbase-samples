@@ -5,6 +5,8 @@ const crypto = require('crypto');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const pgp = require('pg-promise')({ });
+const sqldb = pgp('postgres://postgres:postgres@localhost:5432/sql-injection-sample');
 
 const app = express();
 const sessionSecret = 'SEGReT$25_';
@@ -82,6 +84,25 @@ app.post('/add_message', (req, res) => {
 		db.messages.push(message);
 		res.redirect('/');
 	}
+});
+
+app.get('/sql', (req, res) => {
+	res.render('sql_index', { q: '', results: [], error: null });
+});
+
+app.get('/sql-search', (req, res) => {
+	let q = req.query.q;
+	if (!q) {
+		res.render('sql_index', { q, error: null, results: [] });
+		return;
+	}
+	let queryStr = (
+			'SELECT title, description FROM products ' +
+			'WHERE title LIKE \'%' + q + '%\''
+		);
+	sqldb.query(queryStr)
+		.then(rows => res.render('sql_index', { q, results: rows, error: null }))
+		.catch(error => res.render('sql_index', { q, error, results: [] }));
 });
 
 app.listen(3000, () => console.log('App started at 3000'));

