@@ -19,15 +19,35 @@
 		</div>
 		<div class='row'>
 			<div class='col-md-8'>
-				<form action='/register' method='POST'>
-					<label>Username:</label>
-					<input type='text' name='username' class='form-control' value='user' />
-					<label>Password:</label>
-					<input type='password' name='pass' class='form-control' value='' />
-					<label>Repeat password:</label>
-					<input type='password' name='pass2' class='form-control' value='' />
-					<button type='submit' class='btn btn-primary'>Register</button>
-				</form>
+                <%  if(user) { %>
+                    <h1>Hello, <%= user.username %></h1>
+                    <p>
+                        <a href='/logout'>Logout</a>
+                    </p>
+                    <% if (user.avatar) { %>
+                        <img src='data:image/jpg;base64,<%= user.avatar %>' width=100 height=100 />
+                    <% } else { %>
+                        <p>
+                            No avatar
+                        </p>
+                    <% } %>
+                    <form action='/upload_avatar' method='POST' enctype="multipart/form-data">
+    					<label>Avatar:</label>
+    					<input type='file' name='avatar' />
+    					<br />
+    					<button type='submit' class='btn btn-primary'>Upload</button>
+    				</form>
+                <% } else { %>
+    				<form action='/register' method='POST'>
+    					<label>Username:</label>
+    					<input type='text' name='username' class='form-control' value='user' />
+    					<label>Password:</label>
+    					<input type='password' name='pass' class='form-control' value='' />
+    					<label>Repeat password:</label>
+    					<input type='password' name='pass2' class='form-control' value='' />
+    					<button type='submit' class='btn btn-primary'>Register</button>
+    				</form>
+                <% } %>
 			</div>
 			<div class='col-md-4'>
 				Text

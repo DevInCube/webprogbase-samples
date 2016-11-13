@@ -33,8 +33,8 @@ const db = {
 };
 
 app.set('view engine', 'ejs');
-app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(session({
 	secret: sessionSecret,
 	resave: false,

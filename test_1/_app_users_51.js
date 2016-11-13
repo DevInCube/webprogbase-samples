@@ -48,7 +48,6 @@ app.post('/upload_avatar', (req, res) => {
 			}
 			else {
 				res.status(400).end('user not exists');
-
 			}
 		})
 		.then(() => res.redirect('/users'))
