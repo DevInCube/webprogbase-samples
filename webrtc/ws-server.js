@@ -2,7 +2,7 @@ const http = require('http');
 const webSocketServer = require('websocket').server;
 const express = require('express');
 
-let app = express();
+const app = express();
 app.set('view engine', 'ejs');
 app.use('/*', (req, res) => {
 	res.render('index_ws');
@@ -21,7 +21,7 @@ function broadcast(message, except) {
 		.forEach(x => x.sendUTF(message));
 }
 
-wsServer.on('request', function(request) {  
+wsServer.on('request', function(request) {
     let connection = request.accept(null, request.origin);
 	let port = connection.socket._peername.port;
 	broadcast('New connection on port ' + port);
@@ -31,7 +31,7 @@ wsServer.on('request', function(request) {
         let data = message.utf8Data;
 		broadcast(port + " > "+ data, port);
     });
-    connection.on('close', function(connection) { 
+    connection.on('close', function(connection) {
 		// @todo
 	});
 });

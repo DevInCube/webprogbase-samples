@@ -17,6 +17,7 @@
     "express-session": "^1.14.2",
     "mongodb": "^2.2.10",
     "mongodb-promise": "0.0.4",
+    "mongoose": "^4.6.7",
     "mustache-express": "^1.2.2",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
