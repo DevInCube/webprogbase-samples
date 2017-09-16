@@ -1,0 +1,69 @@
+h1, h3 {
+	background-color: red;
+	color: blue;
+}
+
+
+p span {
+	color: blue;
+}
+
+.quote {
+	border: 4px dashed green;
+}
+
+
+#about {
+	border: 5px solid blue;
+}
+
+input[type="number"] {
+	border: 5px solid blue;
+}
+
+#s1 {
+	visibility: visible;
+}
+
+.sample {
+	font-family: monospace;
+	font-weight: bold;
+	font-size: 20px;
+	border: 1px solid black;
+	width: 50%;
+	min-width: 200px;
+	height: 100px;
+	margin-left: 200px;
+	margin-bottom: 50px;
+	margin-top: 50px;
+}
+
+.x {
+	border: 1px solid red;
+	background-color: yellow;
+	position: relative;
+	left: 20px;
+	top: 30px;
+}
+
+.x:before {
+	content: 'Hello';
+}
+
+li:first-child {
+	background-color: blue;
+}
+
+.x:hover {
+	background-color: green;
+}
+
+
+#table {
+	border: 2px solid black;
+	border-collapse: collapse;	
+}
+
+blockquote {
+	border-top: 2px solid lightgray;
+}
