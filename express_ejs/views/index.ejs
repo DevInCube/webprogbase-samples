@@ -1,4 +1,31 @@
-<form action="/" method="POST">
-	<input type="text" id="name" name="name" />
+<form action="/user/update" method="POST" enctype='multipart/form-data'>
+	<div>
+		<input type="text" id="name" name="name" value="<%= user.name %>"/>
+	</div>
+	<div>
+		<input type="number" id="age" name="age" value="<%= user.age %>"/>
+	</div>
+	<div>
+		<select name="sex">
+		<%
+			function setSelected(value) {
+				if (user.sex === value) return 'selected';
+				else return '';
+			}
+		%>
+			<% for (let s of sexes) { %>
+			<option value='<%= s.value %>' <%=  setSelected(s.value) %> ><%= s.title %></option>
+			<% } %>
+		</select>
+	</div>
+	<div>
+		<input type="file" id="ava" name="ava" />
+	</div>
 	<input type="submit" value="OK" />
 </form>
+
+<% if (user.avaname) { %>
+	<img src="/images/<%= user.avaname %>" />
+<% } else { %>
+	<span>No ava set</span>
+<% } %>
