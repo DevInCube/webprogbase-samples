@@ -4,7 +4,22 @@
 
 # 2
 
-Модулі, веб-сервер на http. Express.js
+Модулі, веб-сервер на http. Express.js.
+
+Promises та їх переваги над callback-підходом.
+
+Створити веб-сервер на Express:
+```txt
+// web server contains a list of numbers
+//
+// GET / 					- returns a list at JSON
+// GET /at/:index 			- returns an item at index if it exists, 
+//							  otherwise 404
+// POST /:value 			- pushes value into list
+// POST /at/:index/:value 	- insert value at index
+// GET /length 				- returns list length
+// DELETE / 				- removes last value
+```
 
 # 3 
 
