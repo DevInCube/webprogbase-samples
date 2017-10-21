@@ -1,0 +1,39 @@
+{
+    "users": {
+        "id": 2,
+        "items": [
+            {
+                "username": "user",
+                "passwordHash": "1db3805e46f90d8f86a49fd1dc7dcb7876f4f0be57c566a6f17605ea4952150cc1860f81c19ac3f6c20e2879453272527a0fdf942a204352054f97be13f55978",
+                "role": "student",
+                "id": 1
+            },
+            {
+                "username": "admin",
+                "passwordHash": "49a6f7ca2dffa4de60b27fe0c9333da2c422783a6f69ba59ca6a3f77f36032ba53363d394b1cdbf466fdb48e8c91beec30766a53deab307eebb63cd91c322121",
+                "role": "admin",
+                "id": 2
+            }
+        ]
+    },
+    "posts": {
+        "id": 3,
+        "items": [
+            {
+                "author_id": 1,
+                "body": "Hello!",
+                "id": 1
+            },
+            {
+                "author_id": 1,
+                "body": "test",
+                "id": 2
+            },
+            {
+                "author_id": 1,
+                "body": "sss",
+                "id": 3
+            }
+        ]
+    }
+}

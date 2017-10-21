@@ -1,0 +1,9 @@
+<div>
+    <% if (user) { %>
+        <a href='/profile'><b><%= user.username %></b></a>
+        <a href='/logout'>Logout</a>
+    <% } else { %>
+        <a href='/register'>Register</a>
+        <a href='/login'>Login</a>
+    <% } %>
+</div>

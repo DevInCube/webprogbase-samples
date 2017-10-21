@@ -1,1 +1,15 @@
+<% include partials/header %>
+
 <h1><%= user.username %> (<%= user.id %>)</h1>
+
+<form method='POST' action='/posts'>
+    <textarea name='body'></textarea>
+    <input type='submit' value='Post' />
+</form>
+
+
+<ul>
+    <% for (let post of posts) { %>
+        <li><pre><%= post.body %></pre></li>
+    <% } %>
+</ul>

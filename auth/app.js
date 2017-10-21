@@ -66,10 +66,16 @@ passport.deserializeUser(function (id, done) {
 // handlers
 
 app.get('/',
-    (req, res) => res.render('index'));
+    (req, res) => {
+        res.render('index', {
+            user: req.user
+        });
+    });
 
 app.get('/register',
-    (req, res) => res.render('register'));
+    (req, res) => res.render('register', {
+        user: req.user
+    }));
 
 app.post('/register',
     (req, res) => {
@@ -85,7 +91,9 @@ app.post('/register',
     });
 
 app.get('/login',
-    (req, res) => res.render('login'));
+    (req, res) => res.render('login', {
+        user: req.user
+    }));
 
 app.get('/logout',
     checkAuth,
@@ -107,9 +115,13 @@ function checkAuth(req, res, next) {
 
 app.get('/profile',
     checkAuth,
-    (req, res) => res.render('profile', {
-        user: req.user
-    }));
+    async (req, res) => {
+        let posts = await db.getPostsByAuthorId(req.user.id);
+        res.render('profile', {
+            user: req.user,
+            posts: posts
+        });
+    });
 
 function checkAdmin(req, res, next) {
     if (req.user.role !== 'admin') return res.sendStatus(403);
@@ -123,10 +135,22 @@ app.get('/admin',
         db.getUsers()
             .then(users => {
                 res.render('admin', {
+                    user: req.user,
                     users: users
                 });
             })
             .catch(() => res.sendStatus(500));
+    });
+
+app.post('/posts',
+    checkAuth,
+    async (req, res) => {
+        let post = {
+            author_id: req.user.id,
+            body: req.body.body
+        };
+        await db.createPost(post);
+        res.redirect('/profile');
     });
 
 app.listen(3000, () => console.log('up!'));
