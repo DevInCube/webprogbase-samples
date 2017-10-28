@@ -1,0 +1,9 @@
+<div style="background-color: lightsteelblue">
+    <% if (user) { %>
+    <b><%= user.username %></b>
+    <a href='/logout'>Logout</a>
+    <% } else { %>
+    <a href='/login'>Login</a>
+    <a href='/register'>Register</a>
+    <% } %>
+</div>

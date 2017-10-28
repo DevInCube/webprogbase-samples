@@ -1,1 +1,9 @@
+<% include partials/header %>
+
 <h1>Profile</h1>
+
+<% if (user) { %>
+<b><%= user.username %></b>
+<% } else { %>
+<i>No user</i>
+<% } %>

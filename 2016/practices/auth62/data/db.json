@@ -1,0 +1,19 @@
+{
+    "users": {
+        "id": 3,
+        "items": [
+            {
+                "username": "user",
+                "passwordHash": "d7dcdfa0c48f7014b05da32ced543d54dcb845a6c23bcf32d8acc9af48f6e77ef1125a99516bdfec4454d3f95856a7c9a3b931a2eaddffe7b124c80d438df503",
+                "role": "user",
+                "id": 1
+            },
+            {
+                "username": "admin",
+                "passwordHash": "affc29d429a1b62d4152d054899520f969afb928950ff1aa1028d50daa393d9225c24febe530c6185ccd5fd13b47dc0d6adc4a5ec03118ffdea4b7711c5697d3",
+                "role": "admin",
+                "id": 2
+            }
+        ]
+    }
+}
