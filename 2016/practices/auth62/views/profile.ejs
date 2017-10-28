@@ -7,3 +7,15 @@
 <% } else { %>
 <i>No user</i>
 <% } %>
+
+<form method='POST' action='/posts'>
+    <textarea name='body'></textarea>
+    <input type='submit' value='Post text'/>
+</form>
+
+
+<ul>
+    <% for (let post of posts) { %>
+    <li><%= post.body %></li>
+    <% } %>
+</ul>

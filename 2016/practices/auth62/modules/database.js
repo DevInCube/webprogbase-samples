@@ -13,12 +13,28 @@ async function writeDatabase(db) {
 }
 
 module.exports = {
+    createPost: async function (post) {
+        let db = await readDatabase();
+        post.id = db.posts.id;
+        db.posts.id++;
+        db.posts.items.push(post);
+        await writeDatabase(db);
+        return post;
+    },
+
+    getPostsByAuthorId: async function (author_id) {
+        let db = await readDatabase();
+        return db.posts.items
+            .filter(x => x.author_id === author_id);
+    },
+
     createUser: async function (user) {
         let db = await readDatabase();
         user.id = db.users.id;
         db.users.id++;
         db.users.items.push(user);
         await writeDatabase(db);
+        return user;
     },
 
     getUserByLoginAndPass: async function (username, passwordHash) {

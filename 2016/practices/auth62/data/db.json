@@ -15,5 +15,70 @@
                 "id": 2
             }
         ]
+    },
+    "posts": {
+        "id": 13,
+        "items": [
+            {
+                "body": "akdgagsd kahdsdghasdasdkjhadhjsaldjadljhdasdhal\r\nasdasd\r\nd\r\nad\r\nasd",
+                "author_id": 1,
+                "id": 1
+            },
+            {
+                "body": "adminadmin",
+                "author_id": 2,
+                "id": 2
+            },
+            {
+                "body": "adjhgadskjhadb",
+                "author_id": 1,
+                "id": 3
+            },
+            {
+                "body": "asdasdas",
+                "author_id": 1,
+                "id": 4
+            },
+            {
+                "body": "asdasdsad",
+                "author_id": 1,
+                "id": 5
+            },
+            {
+                "body": "asd",
+                "author_id": 1,
+                "id": 6
+            },
+            {
+                "body": "as",
+                "author_id": 2,
+                "id": 7
+            },
+            {
+                "body": "sd",
+                "author_id": 2,
+                "id": 8
+            },
+            {
+                "body": "sd",
+                "author_id": 2,
+                "id": 9
+            },
+            {
+                "body": "hgf",
+                "author_id": 2,
+                "id": 10
+            },
+            {
+                "body": "asdads",
+                "author_id": 1,
+                "id": 11
+            },
+            {
+                "body": "asdasd",
+                "author_id": 1,
+                "id": 12
+            }
+        ]
     }
 }

@@ -60,11 +60,17 @@ app.get('/logout',
 
 app.get('/profile',
     checkAuth,
-    (req, res) => {
+    async (req, res) => {
         let user = req.user;
-        res.render('profile', {
-            user
-        });
+        try {
+            let posts = await db.getPostsByAuthorId(user.id);
+            res.render('profile', {
+                user,
+                posts
+            });
+        } catch (e) {
+            res.sendStatus(500);
+        }
     });
 
 function checkAdmin(req, res, next) {
@@ -127,5 +133,21 @@ app.get('/login',
 app.post('/login',
     passport.authenticate('local'),
     (req, res) => res.redirect('/profile'));
+
+app.post('/posts',
+    checkAuth,
+    async (req, res) => {
+        let author_id = req.user.id;
+        let body = req.body.body;
+        try {
+            await db.createPost({
+                body,
+                author_id
+            });
+            res.redirect('/profile');
+        } catch (e) {
+            res.sendStatus(500);
+        }
+    });
 
 app.listen(3000, () => console.log('UP!'));
