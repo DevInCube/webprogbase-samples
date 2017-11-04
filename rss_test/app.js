@@ -1,26 +1,32 @@
 let RSS = require('rss');
 
 let feed = new RSS({
-    title: 'title',
-    description: 'description',
+    title: 'Popular posts',
+    description: 'The most popular posts',
     feed_url: 'http://example.com/rss.xml',
     site_url: 'http://example.com',
     image_url: 'http://example.com/icon.png',
-    docs: 'http://example.com/rss/docs.html',
-    managingEditor: 'Dylan Greene',
-    webMaster: 'Dylan Greene',
-    copyright: '2013 Dylan Greene',
     language: 'en',
-    categories: ['Category 1','Category 2','Category 3'],
+    categories: ['Post', 'Popular'],
     pubDate: 'May 20, 2012 04:00:00 GMT',
-    ttl: '60',
 });
 
-feed.item({
-    title:  'item title',
-    description: 'use this for the content. It can include html.',
-    url: 'http://example.com/article4?this&that', 
-});
+let popularPosts = [
+    {
+        title:  'Bla-bla',
+        description: 'use this for the content. It can include <b>html</b>.',
+        url: 'http://example.com/posts/1', 
+    },
+    {
+        title:  'post #2',
+        description: 'use this for the content. It can include html.',
+        url: 'http://example.com/posts/2', 
+    }
+];
+
+for (let post of popularPosts) {
+    feed.item(post);
+}
 
 // cache the xml to send to clients 
 let xml = feed.xml();
