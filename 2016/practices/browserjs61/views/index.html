@@ -1,1 +1,53 @@
-<h1>Test</h1>
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/styles.css?v=1.0">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class='container'>
+    <div class='page-header'>
+      <h1>
+        <span>Hello</span>
+      </h1>
+    </div>
+    <div class='row'>
+      <div class='col-md-6'>
+        <a href='#' id='clear_link' class='btn btn-info'>Clear</a>
+        <span class="glyphicon glyphicon-saved"></span>
+        <input id='filter_string'></input>
+        <div id="app">
+        </div>
+      </div>
+      <div class='col-md-3 col-sm-6'>
+          <form id='create_user_form'>
+            
+            <div class="form-group">
+              <label for="name">Username</label>
+              <input id="name" name="name" class='form-control' type="text"></input>
+            </div>
+            <div class="form-group">
+                <label for="score">Score</label>
+                <input id="score" name="score" class='form-control' type="number" step="0.1" min="0.0" max="100.0"></input>
+            </div>
+            
+            <input type="submit" value="Create user" class='btn btn-success' ></input>
+          </form>
+      </div>
+    </div>
+  </div>
+  
+  <script src="/javascripts/index.js"></script>
+</body>
+</html>
