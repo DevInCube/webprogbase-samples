@@ -1,0 +1,8 @@
+<hr/>
+<h1>Numbers ({{items.length}}):</h1>
+<ul>
+    {{#items}}
+    <li>Number: {{.}}</li>
+    {{/items}}
+</ul>
+<hr/>

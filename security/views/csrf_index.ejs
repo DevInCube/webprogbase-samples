@@ -20,36 +20,32 @@
 					<label>Username:</label>
 					<input type='text' name='username' class='form-control' value='user' />
 					<label>Password:</label>
-					<input type='password' name='password' class='form-control' value='' /><br/>
+					<input type='password' name='password' class='form-control' value='' placeholder='Enter password' /><br/>
 					<button type='submit' class='btn btn-primary'>Login</button>
 				</form>
 				<% } else { %>
-					<p>
-						Hello, <b></b><%= user.username %></b>
-					</p>
-					<p>
-						<a href='/logout'>logout</a>
-					</p>
-					<h4>Messages</h4>
+					<h3>Hello, <b><%= user.username %></b> <small>(<a href='/logout'>logout</a>)</small>	</h3>
+					<h4>Messages:</h4>
 					<form action='/add_message' method="POST">
-						<input name='message' class='form-control' /><br/>
+						<input name='message' class='form-control' placeholder='Enter you message...'/><br/>
 						<button type='submit' class='btn btn-primary'>Send</button>
 					</form>
 					<br />
-					<div>
+					<ul class='list-group'>
 						<% messages.forEach(message => {%>
-							<div>
+							<li class='list-group-item'>
 								<b><%= message.author %></b>: <span><%- message.text %></span>
-							</div>
+							</li>
 						<% }) %>
-					</div>
+					</ul>
 				<% } %>
 			</div>
-			<div class='col-md-8'>
-				<p>
-                    Bla-bla-bla.
-                </p>
-                <a href='/sql'>SQL Injection Sample</a>
+			<div class='col-md-4'>	
+				<h4>Tips:</h4>
+				<p>Password is <code>pass</code></p>
+				<p><a target="_blank" href='http://localhost:3001'>Just a link</a> (CSRF)</p>
+				<p><a href='/sql'>SQL Injection Sample</a></p>
+				<p><a target="_blank" href='http://localhost:3002'>"Google"</a></p>
 			</div>
 		</div>
 	</div>

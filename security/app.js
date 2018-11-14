@@ -6,7 +6,7 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const pgp = require('pg-promise')({ });
-const sqldb = pgp('postgres://postgres:postgres@localhost:5432/sql-injection-sample');
+const sqldb = pgp('postgres://user:user@localhost:5432/sql-injection-sample');
 
 const app = express();
 const sessionSecret = 'SEGReT$25_';

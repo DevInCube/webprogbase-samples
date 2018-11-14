@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Browser mustache</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form id="login-form">
+        <input type="text" name="username"><br/>
+        <input type="password" name="password"><br/>
+        <input type="submit" value="Login">
+    </form>
+    <hr/>
+    <form id="logout-form">
+        <input type="submit" value="Logout">
+    </form>
+    <hr/>
+    <form id="private-data-form">
+        <input type="submit" value="Get private data">
+    </form>
+    <hr/>
+    <div id="report">Loading...</div>
+    <!-- -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="/javascripts/browser-app.js"></script>
+</body>
+</html>
