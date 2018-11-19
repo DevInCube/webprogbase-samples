@@ -1,0 +1,19 @@
+{{#users.length}}
+<div>
+   <ul id='users-list' class="list-group">
+   {{#users}}
+       <li class="list-group-item">
+       <span class='float-right'>
+           <a href='#' class='remove-link' user_id="{{id}}">remove</a>
+       </span>
+       <b>{{fullname}}</b>
+       <span class='user-id'>(id: {{id}})</span>
+   </li>
+   {{/users}}
+   </ul>
+</div>
+{{/users.length}}
+
+{{^users}}
+<h3>No users found</h3>
+{{/users}}
