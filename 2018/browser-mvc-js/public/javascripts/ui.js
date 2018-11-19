@@ -10,22 +10,19 @@ const Ui = {
 
     listTemplate: null,
     async loadListTemplate() {
-        if (!this.listTemplate) {
-            const response = await fetch('/templates/users.mst');
-            this.listTemplate = await response.text();
-        }
-        return this.listTemplate;
+        const response = await fetch('/templates/users.mst');
+        this.listTemplate = await response.text();
     },
 
     setFilter(filter) { this.filterInputEl.value = filter; },
-    
-    async renderUsers(users) {
+
+    renderUsers(users) {
         // remove old list and unsubscribe all handlers
         for (const link of this.listOfRemoveLinks) {
             link.removeEventListener("click", onUserRemoveClicked)
         }
         // update DOM
-        const template = await this.loadListTemplate();
+        const template = this.listTemplate;
         const data = { users: users };
         const renderedHTML = Mustache.render(template, data);
         this.filteredUsersEl.innerHTML = renderedHTML;
@@ -36,12 +33,11 @@ const Ui = {
     },
 };
 
-function onUserRemoveClicked(e) {
+async function onUserRemoveClicked(e) {
     const userId = parseInt(e.target.getAttribute("user_id"));
-    User.delete(userId).then(res => {
-        data.users = data.users.filter(x => x.id !== userId);
-        Ui.renderUsers(data.filteredUsers);
-    });
+    if (await User.delete(userId)) {
+        data.removeUser(userId);
+    }
 }
 
 
