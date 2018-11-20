@@ -12,7 +12,7 @@
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
     "crypto": "^1.0.1",
-    "ejs": "^2.5.7",
+    "ejs": "^2.6.1",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "fs-extra": "^4.0.2",
