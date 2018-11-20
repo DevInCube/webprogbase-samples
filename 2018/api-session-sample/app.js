@@ -24,6 +24,9 @@ app.get('/', (req, res) => res.send(`
         <input type='password' name='password' value='pass'><br/>
         <input type='submit' value='Login'>
     </form>
+    <br/>
+    <button onclick='fetchDataBasic()'>Fetch data (basic)</button><br/>
+    <script src='/javascripts/browser-app.js'></script>
 `));
 
 app.get('/profile',
@@ -35,7 +38,6 @@ app.get('/profile',
         res.send(`
     <h1>Profile: ${req.user.username}</h1>
     <button onclick='fetchData()'>Fetch data (session)</button><br/>
-    <button onclick='fetchDataBasic()'>Fetch data (basic)</button><br/>
     <script src='/javascripts/browser-app.js'></script>
 `);
     });
