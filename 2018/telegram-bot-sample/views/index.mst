@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gen Event</title>
+</head>
+<body>
+    <h1>Generate some event</h1>
+    <form action='/' method="POST">
+        <textarea type="text" name="payload" rows=3 cols=40>Default payload message</textarea><br/>
+        <input type='submit' value='Send'>
+    </form>
+</body>
+</html>

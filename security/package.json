@@ -4,6 +4,7 @@
   "description": "",
   "main": "csrf_evil_server.js",
   "scripts": {
+    "start": "node app.js & node fishing_server.js & node csrf_evil_server.js;",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
