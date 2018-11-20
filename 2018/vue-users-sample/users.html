@@ -20,11 +20,11 @@
        <hr/>
        <p>Count: <b>{{filteredUsers.length}}</b></p>
        <h3  v-if="!filteredUsers.length">No users found</h3>
-       <div v-if="filteredUsers.length">
+       <div v-else>
            <ul id="users-list" class="list-group">
                <li v-for="user in filteredUsers" class="list-group-item">
                    <span class="float-right">
-                       <a href="#" :user_id="user.id" v-on:click="removeUser" >remove</a>
+                       <a href="#" :user_id="user.id" @click="removeUser" >remove</a>
                    </span>
                    <b>{{ user.fullname }}</b> <span class="user-id">(id: {{user.id }})</span>
                </li>
@@ -34,7 +34,7 @@
       </div>
       <div>
           <h3>Create new user:</h3>
-          <form v-on:submit="createUser">
+          <form @submit="createUser">
             <div class="form-group">
                 <label for="newUserName">Username</label>
                 <input id='newUserName' name='newUserName' class="form-control" value="New User" />
