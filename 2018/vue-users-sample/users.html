@@ -88,7 +88,7 @@
                        .catch(err => console.log("Can't create user on server"));
                },
                removeUser: function(event) {
-                   const userId = event.target.attributes.user_id.value;
+                   const userId = parseInt(event.target.attributes.user_id.value);
                    User.delete(userId)
                        .then(x => this.users.splice(this.users.findIndex(x => x.id === userId), 1))
                        .catch(err => console.log("Can't remove user on server"));
