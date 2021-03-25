@@ -1,13 +1,13 @@
-const app = new Vue({
-    el: '#books-app',
-    
-    mounted: function() {
+const app = Vue.createApp({    
+    mounted() {
          this.fetchBooks();
     },
 
-    data: {
-        books: [],
-        titleFilter: ""
+    data() {
+        return {
+            books: [],
+            titleFilter: ""
+        };
     },
     computed: {
         filteredBooks: function () {
@@ -69,3 +69,5 @@ const app = new Vue({
         }
     }
  });
+
+ app.mount("#books-app");
