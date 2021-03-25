@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Sample</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+
+<body class="container">
+    <div id="books-app">
+        <h1>Books</h1>
+        <div id="leftColumn">
+            <p><b>Filter by title:</b></p>
+            <input v-model="titleFilter" class="form-control" />
+            <a href="#" v-on:click="clearFilter">Clear</a>
+            <hr />
+            <p>Count: <b>{{filteredBooks.length}}</b></p>
+            <h3 v-if="!filteredBooks.length">No books found</h3>
+            <div v-else>
+                <ul id="books-list" class="list-group">
+                    <li v-for="book in filteredBooks" class="list-group-item">
+                        <span class="float-end">
+                            <a href="#" :book_id="book.id" @click="removeBook">remove</a>
+                        </span>
+                        <b>{{ book.title }}</b> by <i>{{ book.authors}}</i> <span class="book-id">(id: {{book.id }})</span>
+                    </li>
+                </ul>
+            </div>
+            <hr />
+        </div>
+        <div id="rightColumn">
+            <h3>Add new book:</h3>
+            <form @submit="createBook">
+                <div class="form-group">
+                    <label for="newBookTitle">Title</label>
+                    <input id="newBookTitle" name="newBookTitle" class="form-control" value="Title">
+                    <label for="newBookAuthros">Authors</label>
+                    <input id="newBookAuthors" name="newBookAuthors" class="form-control" value="Authors">
+                </div>
+                <button type="submit" class="btn btn-primary">Add book</button>
+            <form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- <script src="/javascripts/bookRepository.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+    <script src="/javascripts/bookRepositoryFirebase.js"></script>
+    <script src="/javascripts/books.js"></script>
+</body>
+
+</html>
