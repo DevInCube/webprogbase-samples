@@ -1,0 +1,59 @@
+type Module {
+    name: String!
+    description: String
+}
+
+type Status {
+    os: String,
+    uptime: Int,
+    description: String,
+    modules: [Module]
+}
+
+type Book {
+    title: String!
+    authors: String!
+}
+
+enum UserRole {
+    SIMPLE
+    ADMIN
+}
+
+type User {
+    id: ID!
+    username: String!
+    role: UserRole!
+}
+
+type Query {
+  me: User
+  hello: String
+  echo(message: String): String
+  echoLater(message: String!, timeout: Int!): String!
+  readFile(filename: String!): String
+  status: Status
+  latestPosts(page: Int = 1, perPage: Int = 3): [Post]
+  getBookByTitle(title: String!): Book
+  fail: String
+}
+
+type Post {
+    id: ID!
+    timestamp: String!
+    text: String!
+}
+
+input PostInput {
+    text: String!
+}
+
+type Mutation {
+    createPost(post: PostInput): Post
+    updatePost(postId: ID!, post: PostInput): Post
+    deletePost(postId: ID!): Post
+}
+
+type Subscription {
+  postCreated: Post
+}
