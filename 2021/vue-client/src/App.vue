@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <input v-model="comment" placeholder="Comment...">
     <button @click="createPost">Create post</button>
     <ul>
       <li v-for="post in posts" v-bind:key="post.id">
@@ -10,13 +11,13 @@
 </template>
  
 <script>
-//import HelloWorld from './components/HelloWorld.vue'
-import gql from 'graphql-tag'
- 
+import { CREATE_POST, POST_FEED } from './constants/graphql.js'
+
 export default {
   name: 'App',
   data() {
     return {
+      comment: 'default comment',
       posts: [
         {id: 1, author: 'auth1', comment: 'desc 1'},
         {id: 2, author: 'auth1', comment: 'desc 22'},
@@ -31,13 +32,7 @@ export default {
     // Subscriptions
     $subscribe: {
       postCreated: {
-        query: gql`subscription PostFeed {
-          postCreated {
-            id
-            author
-            comment
-          }
-        }`,
+        query: POST_FEED,
         // Result hook
         result ({ data }) {
           const {postCreated} = data;
@@ -52,13 +47,10 @@ export default {
     async createPost() {
       console.log('create post');
       const result = await this.$apollo.mutate({
-        mutation: gql`mutation {
-          createPost(author: "me", comment: "this is a post") {
-            id
-            author
-            comment
-          }
-        }`,
+        mutation: CREATE_POST,
+        variables: {
+          comment: this.comment,
+        },
       });
       console.log(result);
     }
