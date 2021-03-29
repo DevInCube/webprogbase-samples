@@ -1,0 +1,24 @@
+type User {
+  id: ID!
+  username: String!
+}
+
+type Link {
+  id: ID!
+  description: String!
+  url: String!
+  postedBy: User  
+}
+
+type Query {
+    test: String
+}
+
+type Mutation {
+    post(url: String!, description: String!): Link!
+}
+
+type Subscription {
+  newLink: Link
+}
+
