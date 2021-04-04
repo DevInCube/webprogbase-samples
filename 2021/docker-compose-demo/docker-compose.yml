@@ -1,0 +1,22 @@
+version: "2.2"
+services:
+  rabbit:
+    build: eventbus/.
+    ports: 
+      - "7999:5672"
+
+  auth:
+    build: auth/.
+    ports:
+      - "8000:8000"
+    environment:
+      JWT_KEY: "${JWT_KEY}"
+    restart: always
+
+  server1:
+    build: server1/.
+    ports:
+      - "8001:8001"
+    environment:
+      JWT_KEY: "${JWT_KEY}"
+    restart: always
