@@ -4,6 +4,15 @@ const { PubSub, ApolloServer } = require('apollo-server');
 const pubsub = new PubSub();
 
 const resolvers = {
+    Query: {
+        posts() {
+            return [
+                {id: 1, author: 'auth1', comment: 'desc 1'},
+                {id: 2, author: 'auth1', comment: 'desc 22'},
+                {id: 3, author: 'auth2', comment: 'desc 333'},
+            ];
+        },
+    },
     Mutation: {
         createPost(parent, {author, comment}, context) {
             const newPost = {
