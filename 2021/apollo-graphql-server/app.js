@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { PubSub, ApolloServer } = require('apollo-server');
+const { PubSub, ApolloServer, withFilter } = require('apollo-server');
 
 const pubsub = new PubSub();
 
@@ -29,6 +29,7 @@ const resolvers = {
                 comment,
             }; 
             pubsub.publish('POST_CREATED', { postCreated: newPost });
+            pubsub.publish('POST_CREATED_BY', { postCreatedBy: newPost });
             return newPost;
         }
     },
@@ -37,6 +38,16 @@ const resolvers = {
         // More on pubsub below
         subscribe: () => pubsub.asyncIterator(['POST_CREATED']),
       },
+      postCreatedBy: {
+          subscribe (_, args, context) {
+            return withFilter(
+                () => pubsub.asyncIterator(['POST_CREATED_BY']),
+                (result, variables) => {
+                    return result.postCreatedBy.author === variables.author;
+                }
+            )(_, args, context);
+          }
+      }
     },
     // ...other resolvers...
   };

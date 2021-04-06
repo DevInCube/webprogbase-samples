@@ -11,10 +11,11 @@ type Query {
 
 type Subscription {
   postCreated: Post
+  postCreatedBy(author: String!): Post
 }
 
 type Mutation {
-  createPost(author: String, comment: String): Post
+  createPost(author: String!, comment: String!): Post
 }
 
 # subscription PostFeed {
