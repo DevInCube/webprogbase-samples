@@ -1,11 +1,12 @@
 type Post {
-    id: ID!
-    author: String!
-    comment: String!
+  id: ID!
+  author: String!
+  comment: String!
 }
 
 type Query {
-    posts: [Post!]!
+  posts: [Post!]!
+  post(id: ID!): Post
 }
 
 type Subscription {

@@ -3,14 +3,22 @@ const { PubSub, ApolloServer } = require('apollo-server');
 
 const pubsub = new PubSub();
 
+const db = {
+    posts: [
+        {id: 1, author: 'auth1', comment: 'desc 1'},
+        {id: 2, author: 'auth1', comment: 'desc 22'},
+        {id: 3, author: 'auth2', comment: 'desc 333'},
+    ]
+};
+
 const resolvers = {
     Query: {
         posts() {
-            return [
-                {id: 1, author: 'auth1', comment: 'desc 1'},
-                {id: 2, author: 'auth1', comment: 'desc 22'},
-                {id: 3, author: 'auth2', comment: 'desc 333'},
-            ];
+            return db.posts;
+        },
+        post(parent, {id}, context) {
+            const postId = parseInt(id);
+            return db.posts.find(x => x.id === postId);
         },
     },
     Mutation: {
@@ -52,6 +60,6 @@ const server = new ApolloServer({
 server
     .listen()
     .then(({ url, subscriptionsUrl }) => {
-        console.log(`🚀 Server ready at ${url}`);
-        console.log(`🚀 Subscriptions ready at ${subscriptionsUrl}`);
+        console.log(`+ Server ready at ${url}`);
+        console.log(`+ Subscriptions ready at ${subscriptionsUrl}`);
     });
