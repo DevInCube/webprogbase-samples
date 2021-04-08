@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mongodb": "^2.2.36",
+    "mongodb": "^3.1.13",
     "mongoose": "^5.7.5",
     "pg": "^7.5.0",
     "pg-promise": "^6.10.3",
